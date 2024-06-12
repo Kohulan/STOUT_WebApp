@@ -35,14 +35,12 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## Acknowledgments :bulb:
 
 - Funded by the [Deutsche Forschungsgemeinschaft (DFG, German Research Foundation)](https://www.dfg.de/) under the [ChemBioSys](https://www.chembiosys.de/en/) (Project INF) - Project number: **239748522 - SFB 1127**.
-
+<p align="center"><a href="https://www.chembiosys.de/en/welcome.html" target="_blank">
+    <img src="https://github.com/Steinbeck-Lab/cheminformatics-microservice/assets/30716951/45c8e153-8322-4563-a51d-cbdbe4e08627" width="45%" alt="Chembiosys Logo">
+  </a></p>
+  
 - Research supported with Cloud TPUs from Google's TPU Research Cloud (TRC)
-
-<div style="display: flex; justify-content: space-between;">
-  <a href="https://www.chembiosys.de/en/welcome.html" target="_blank">
-    <img src="https://github.com/Steinbeck-Lab/cheminformatics-microservice/assets/30716951/45c8e153-8322-4563-a51d-cbdbe4e08627" width="30%" alt="Chembiosys Logo">
-  </a>
-  <a href="https://sites.research.google/trc/about/" target="_blank">
-    <img src="https://user-images.githubusercontent.com/30716951/220350828-913e6645-6a0a-403c-bcb8-160d061d4606.png" width="30%" alt="TRC Logo">
-  </a>
-</div>
+<p align="center"> <a href="https://sites.research.google/trc/about/" target="_blank">
+    <img src="https://user-images.githubusercontent.com/30716951/220350828-913e6645-6a0a-403c-bcb8-160d061d4606.png" width="45%" alt="TRC Logo">
+  </a></p>
+  
