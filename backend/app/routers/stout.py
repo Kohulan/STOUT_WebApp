@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 import io
-from typing import Annotated
 from typing import Literal
-from typing import Optional
 from typing import Union
 
 from fastapi import APIRouter

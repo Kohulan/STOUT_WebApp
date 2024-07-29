@@ -2,6 +2,9 @@ import tensorflow as tf
 from rdkit import Chem
 import pickle
 import re
+import pystow
+import os
+import zipfile
 
 # Set path
 default_path = pystow.join("STOUT-V2", "models")

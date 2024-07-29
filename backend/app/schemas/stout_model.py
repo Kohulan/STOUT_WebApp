@@ -47,9 +47,6 @@ class STOUTtableModel(BaseModel):
         }
 
 
-from pydantic import BaseModel, Field
-
-
 class GenerateSMILESResponse(BaseModel):
     """Represents a response containing a generated SMILES string and depiction.
 

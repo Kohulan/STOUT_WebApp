@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Tuple
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit.Chem import rdDepictor
@@ -36,7 +37,7 @@ def get_3d_conformers(molecule: any, depict=True) -> Chem.Mol:
 
 
 def get_rdkit_depiction(
-    molecule: Any,
+    molecule: any,
     molSize: Tuple[int, int] = (512, 512),
     rotate: int = 0,
     kekulize: bool = True,

@@ -1,6 +1,5 @@
 import requests
 import html
-from streamlit_extras.bottom_container import bottom
 import streamlit as st
 
 API_URL = "http://backend:3000"
@@ -71,7 +70,8 @@ def show_generate_iupac(API_URL: str = API_URL) -> None:
                 st.json(result)
         else:
             st.error("Error occurred while generating IUPAC name.")
-    st.markdown("""
+    st.markdown(
+        """
 <style>
 .warning-container {
     display: flex;
@@ -97,4 +97,6 @@ def show_generate_iupac(API_URL: str = API_URL) -> None:
         More than 50 SMILES will be discarded, and only the IUPAC names for the first 50 will be displayed.
     </div>
 </div>
-""", unsafe_allow_html=True)
+""",
+        unsafe_allow_html=True,
+    )

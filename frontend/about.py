@@ -1,11 +1,13 @@
 import streamlit as st
 from streamlit_extras.bottom_container import bottom
 
+
 def show_about():
-    st.markdown("""
+    st.markdown(
+        """
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-    
+
     body {
         font-family: 'Roboto', sans-serif;
         background-color: #f5f0ed;
@@ -76,56 +78,65 @@ def show_about():
         text-decoration: underline;
     }
     </style>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     st.markdown('<div class="md-container">', unsafe_allow_html=True)
     st.markdown('<h1 class="md-header">How to cite us?</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="md-code">Rajan, K., Zielesny, A. & Steinbeck, C. STOUT: SMILES to IUPAC names using neural machine translation. J Cheminform 13, 34 (2021). https://doi.org/10.1186/s13321-021-00512-4</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="md-code">Rajan, K., Zielesny, A. & Steinbeck, C. STOUT: SMILES to IUPAC names using neural machine translation. J Cheminform 13, 34 (2021). https://doi.org/10.1186/s13321-021-00512-4</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown('<div class="md-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="md-header">Contact Us</h2>', unsafe_allow_html=True)
-    
+
     col1, col2 = st.columns([1, 1])
-    
+
     with col1:
         iframe_src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.2949726059553!2d11.581905350629135!3d50.93352470346138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a6a898c3634fbb%3A0xdf22378d9f537b71!2sLessingstra%C3%9Fe%208%2C%2007743%20Jena%2C%20Germany!5e0!3m2!1sen!2s!4v1681045800175!5m2!1sen!2s"
-        st.markdown(f'<div class="md-map"><iframe src="{iframe_src}" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen></iframe></div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="md-map"><iframe src="{iframe_src}" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen></iframe></div>',
+            unsafe_allow_html=True,
+        )
     with col2:
-        st.markdown("""
+        st.markdown(
+            """
         <h3 class="md-subheader">Prof. Dr. Christoph Steinbeck</h3>
         <div class="md-contact">
             <span class="md-contact-icon">📧</span>
             <a href="mailto:christoph.steinbeck@uni-jena.de" class="md-text">christoph.steinbeck@uni-jena.de</a>
         </div>
-        
         <h3 class="md-subheader">Dr. Kohulan Rajan</h3>
         <div class="md-contact">
             <span class="md-contact-icon">📧</span>
             <a href="mailto:kohulan.rajan@uni-jena.de" class="md-text">kohulan.rajan@uni-jena.de</a>
         </div>
-        
         <h3 class="md-subheader">Address</h3>
         <p class="md-text">Institute for Inorganic and Analytical Chemistry, Friedrich Schiller University, Lessingstraße 8, Jena 07743, Germany</p>
-        """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
+    st.markdown("</div>", unsafe_allow_html=True)
 
     with bottom():
-            st.markdown(
-                "<h4 style='text-align: center;'>Acknowledgement</h4>",
-                unsafe_allow_html=True,
-            )
-            st.markdown(
-                "<p style='text-align: center;'>Research supported with Cloud TPUs from Google's TPU Research Cloud (TRC)</p>",
-                unsafe_allow_html=True,
-            )
-            st.markdown(
-                """
+        st.markdown(
+            "<h4 style='text-align: center;'>Acknowledgement</h4>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            "<p style='text-align: center;'>Research supported with Cloud TPUs from Google's TPU Research Cloud (TRC)</p>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
                 <footer>
                     <p align='center'>
                         <img src='https://user-images.githubusercontent.com/30716951/220350828-913e6645-6a0a-403c-bcb8-160d061d4606.png' width='250'>
                     </p>
                 </footer>
                 """,
-                unsafe_allow_html=True,
-            )
+            unsafe_allow_html=True,
+        )

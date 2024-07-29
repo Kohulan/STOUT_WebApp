@@ -1,11 +1,9 @@
 from __future__ import annotations
 import os
-from typing import List, Union
 import pystow
 from jpype import (
     getDefaultJVMPath,
     isJVMStarted,
-    JClass,
     JPackage,
     JVMNotFoundException,
     startJVM,
@@ -24,7 +22,7 @@ def setup_jvm():
             "This indicates that the environment variable JAVA_HOME is not set properly."
         )
         print("You can set it or set it manually in the code")
-        jvmPath = "Define/path/or/set/JAVA_HOME/variable/properly"
+        # jvmPath = "Define/path/or/set/JAVA_HOME/variable/properly"
 
     if not isJVMStarted():
         paths = {
@@ -151,7 +149,7 @@ def process_predicted_smiles(
                     return f"{smiles}\t{predicted_IUPAC}"
     else:
         # Translation failed
-        if visulaize:
+        if visualize:
             return f"{smiles}\t{get_svg_2d(smiles)}\t{predicted_IUPAC}\tunable to assess\tfailed to retranslate"
         else:
             return (

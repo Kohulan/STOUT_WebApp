@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-from streamlit_extras.bottom_container import bottom
 
 API_URL = "http://backend:3000"
 

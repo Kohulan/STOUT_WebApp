@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 from html import unescape
 from streamlit_ketcher import st_ketcher
-from streamlit_extras.bottom_container import bottom
 
 API_URL = "http://backend:3000"
 HEADERS = {"Content-Type": "text/plain", "accept": "application/json"}

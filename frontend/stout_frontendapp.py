@@ -13,6 +13,7 @@ from about import show_about
 API_URL = "http://backend:3000"
 HEADERS = {"Content-Type": "text/plain", "accept": "application/json"}
 
+
 def show_footer():
     """
     Display a fixed footer at the bottom of the Streamlit app.
@@ -48,8 +49,9 @@ def show_footer():
             <p>&copy; 2024 <strong>stout.decimer.ai</strong> is created and maintained by the <a href="https://cheminf.uni-jena.de" target="_blank">Steinbeck Group</a></p>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def show_home(API_URL: str = API_URL) -> None:
     """
