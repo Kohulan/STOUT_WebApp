@@ -13,6 +13,43 @@ from about import show_about
 API_URL = "http://backend:3000"
 HEADERS = {"Content-Type": "text/plain", "accept": "application/json"}
 
+def show_footer():
+    """
+    Display a fixed footer at the bottom of the Streamlit app.
+
+    This function renders an HTML and CSS-styled footer that is fixed
+    at the bottom of the page. The footer contains a copyright notice
+    and a link to the Steinbeck Group's website, attributing the creation
+    and maintenance of the application.
+
+    Usage:
+        Call this function at the end of your Streamlit app script to display
+        the footer at the bottom of the app.
+
+    Example:
+        show_footer()
+    """
+    st.markdown(
+        """
+        <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            color: black;
+            text-align: center;
+            padding: 10px;
+            z-index: 999;
+        }
+        </style>
+        <div class="footer">
+            <p>&copy; 2024 <strong>stout.decimer.ai</strong> is created and maintained by the <a href="https://cheminf.uni-jena.de" target="_blank">Steinbeck Group</a></p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 def show_home(API_URL: str = API_URL) -> None:
     """
@@ -171,15 +208,6 @@ def show_health_check():
             st.success(f"Health Status: {result['status']}")
         else:
             st.error("API is not healthy.")
-    with bottom():
-        st.markdown(
-            """
-            <footer style='text-align: center; margin-top: 10px; padding: 10px; background-color: #f2f2f2;'>
-                <p>&copy; 2024 <strong>stout.decimer.ai</strong> is created and maintained by the <a href="https://cheminf.uni-jena.de" target="_blank">Steinbeck Group</a></p>
-            </footer>
-            """,
-            unsafe_allow_html=True,
-        )
 
 
 def main():
@@ -226,7 +254,7 @@ def main():
         "GitHub",
     ]
 
-    urls = {"GitHub": "https://github.com/Kohulan/Smiles-TO-iUpac-Translator"}
+    urls = {"GitHub": "https://github.com/Kohulan/STOUT_WebApp"}
 
     styles = {
         "nav": {
@@ -276,6 +304,9 @@ def main():
     go_to = functions.get(page)
     if go_to:
         go_to()
+
+    # Add the permanent footer
+    show_footer()
 
 
 if __name__ == "__main__":

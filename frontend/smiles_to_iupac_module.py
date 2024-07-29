@@ -71,12 +71,30 @@ def show_generate_iupac(API_URL: str = API_URL) -> None:
                 st.json(result)
         else:
             st.error("Error occurred while generating IUPAC name.")
-    with bottom():
-        st.markdown(
-            """
-            <footer style='text-align: center; margin-top: 10px; padding: 10px; background-color: #f2f2f2;'>
-                <p>&copy; 2024 <strong>stout.decimer.ai</strong> is created and maintained by the <a href="https://cheminf.uni-jena.de" target="_blank">Steinbeck Group</a></p>
-            </footer>
-            """,
-            unsafe_allow_html=True,
-        )
+    st.markdown("""
+<style>
+.warning-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.stWarning {
+    background-color: #FFF9C4;
+    border-left: 6px solid #FBC02D;
+    color: #212121;
+    padding: 16px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+    max-width: 80%;
+    width: fit-content;
+}
+</style>
+<div class="warning-container">
+    <div class="stWarning">
+        More than 50 SMILES will be discarded, and only the IUPAC names for the first 50 will be displayed.
+    </div>
+</div>
+""", unsafe_allow_html=True)

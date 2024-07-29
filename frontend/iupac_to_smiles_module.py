@@ -90,13 +90,3 @@ def show_convert_iupac():
                         f'<div style="text-align: center;">{result["Depiction"]}</div>',
                         unsafe_allow_html=True,
                     )
-
-    with bottom():
-        st.markdown(
-            """
-            <footer style='text-align: center; margin-top: 10px; padding: 10px; background-color: #f2f2f2;'>
-                <p>&copy; 2024 <strong>stout.decimer.ai</strong> is created and maintained by the <a href="https://cheminf.uni-jena.de" target="_blank">Steinbeck Group</a></p>
-            </footer>
-            """,
-            unsafe_allow_html=True,
-        )
