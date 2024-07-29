@@ -14,7 +14,7 @@
 # STOUT (Smiles TO iUpac Translator) Web Application
 This repository contains the code running on [stout.decimer.ai](https://stout.decimer.ai)
 
-- STOUT-V2, SMILES to IUPAC name translator using transformers. STOUT-V2 can translate SMILES to IUPAC names and IUPAC names back to a valid SMILES string. STOUT is actively developed and maintained by the [Steinbeck group](https://cheminf.uni-jena.de/) at the [Friedrich Schiller University Jena](https://www.uni-jena.de/).
+- STOUT-V2, SMILES to IUPAC name translator using transformers. STOUT-V2 can translate SMILES to IUPAC names and IUPAC names back to a valid SMILES string. STOUT is actively developed and maintained by [Kohulan Rajan](https://kohulanr.com) at the [Steinbeck group](https://cheminf.uni-jena.de/) at the [Friedrich Schiller University Jena](https://www.uni-jena.de/).
 
 
 ## License :scroll:
