@@ -101,25 +101,35 @@ def show_about():
             f'<div class="md-map"><iframe src="{iframe_src}" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen></iframe></div>',
             unsafe_allow_html=True,
         )
+        st.markdown(
+            """
+    <p class="md-subheader"><b>Address:</b></p>
+    <p class="md-text">Institute for Inorganic and Analytical Chemistry, Friedrich Schiller University, Lessingstraße 8, Jena 07743, Germany</p>
+    """,
+            unsafe_allow_html=True,
+        )
     with col2:
         st.markdown(
             """
-        <h3 class="md-subheader">Prof. Dr. Christoph Steinbeck</h3>
+        <h3 class="md-subheader"><b>Authors: </b></h3>
         <div class="md-contact">
+            <h4 class="md-subheader" style="margin: 0;">    - Prof. Dr. Christoph Steinbeck: </h4>
             <span class="md-contact-icon">📧</span>
             <a href="mailto:christoph.steinbeck@uni-jena.de" class="md-text">christoph.steinbeck@uni-jena.de</a>
         </div>
-        <h3 class="md-subheader">Dr. Kohulan Rajan</h3>
         <div class="md-contact">
+            <h4 class="md-subheader" style="margin: 0;">    - Prof. Dr. Achim Zielesny: </h4>
+            <span class="md-contact-icon">📧</span>
+            <a href="mailto:achim.zielesny@w-hs.de" class="md-text">achim.zielesny@w-hs.de</a>
+        </div>
+        <div class="md-contact">
+            <h4 class="md-subheader" style="margin: 0;">     - Dr. Kohulan Rajan: </h4>
             <span class="md-contact-icon">📧</span>
             <a href="mailto:kohulan.rajan@uni-jena.de" class="md-text">kohulan.rajan@uni-jena.de</a>
         </div>
-        <h3 class="md-subheader">Address</h3>
-        <p class="md-text">Institute for Inorganic and Analytical Chemistry, Friedrich Schiller University, Lessingstraße 8, Jena 07743, Germany</p>
         """,
             unsafe_allow_html=True,
         )
-    st.markdown("</div>", unsafe_allow_html=True)
 
     with bottom():
         st.markdown(
@@ -132,11 +142,11 @@ def show_about():
         )
         st.markdown(
             """
-                <footer>
-                    <p align='center'>
-                        <img src='https://user-images.githubusercontent.com/30716951/220350828-913e6645-6a0a-403c-bcb8-160d061d4606.png' width='250'>
-                    </p>
-                </footer>
-                """,
+            <footer>
+                <p align='center'>
+                    <img src='https://user-images.githubusercontent.com/30716951/220350828-913e6645-6a0a-403c-bcb8-160d061d4606.png' width='250'>
+                </p>
+            </footer>
+            """,
             unsafe_allow_html=True,
         )
