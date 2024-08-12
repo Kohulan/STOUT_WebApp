@@ -3,6 +3,23 @@ from streamlit_extras.bottom_container import bottom
 
 
 def show_about():
+    """
+    Display the 'About' page of the Streamlit app.
+
+    This function creates an 'About' section in a Streamlit app, providing
+    information on how to cite the project, contact details for the authors,
+    and acknowledgments. It includes embedded Google Maps for the address,
+    links to email addresses, and acknowledgment of support and licensing.
+
+    The page is styled using inline CSS for consistency with the app's design
+    language, ensuring a cohesive user experience.
+
+    Usage:
+        Call this function to display the 'About' page within the Streamlit app.
+
+    Example:
+        show_about()
+    """
     st.markdown(
         """
     <style>

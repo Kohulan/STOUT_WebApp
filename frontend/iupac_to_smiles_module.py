@@ -4,7 +4,9 @@ import requests
 API_URL = "http://backend:3000"
 
 
-def generate_smiles_from_iupac(iupac_name, converter="opsin", visualize="2D"):
+def generate_smiles_from_iupac(
+    iupac_name: str, converter: str = "opsin", visualize: str = "2D"
+) -> dict:
     """
     Generate SMILES from a given IUPAC name using the IUPAC2SMILES API endpoint.
 

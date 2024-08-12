@@ -1,4 +1,4 @@
-<p align="center"><a href="https://stout.decimer.ai/" target="_blank"><img src="/public/img/logo.png" width="400" alt="STOUT Logo"></a></p>
+<p align="center"><a href="https://stout.decimer.ai/" target="_blank"><img src="/frontend/public/STOUT.png" width="400" alt="STOUT Logo"></a></p>
 
 [![License](https://img.shields.io/badge/License-MIT%202.0-blue.svg)](https://opensource.org/licenses/MIT)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blue.svg)](https://GitHub.com/Kohulan/STOUT_WebApp/graphs/commit-activity)

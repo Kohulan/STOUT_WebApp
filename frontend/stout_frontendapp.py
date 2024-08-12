@@ -264,7 +264,7 @@ def main():
     )
 
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    logo_path = os.path.join(parent_dir, "STOUT.svg")
+    logo_path = os.path.join(parent_dir, "/public/STOUT.svg")
 
     pages = [
         "Home",

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import io
 from typing import Literal
 from typing import Union
 
@@ -13,19 +12,18 @@ from fastapi.responses import JSONResponse
 from fastapi.responses import Response
 
 from rdkit import Chem
-from app.schemas import HealthCheck
+from app.schemas.healthcheck import HealthCheck
 from app.schemas.stout_model import (
     STOUTtableModel,
     STOUTOutputModel,
     GenerateSMILESResponse,
 )
 from app.modules.opsin_wrapper import get_opsin_convertion, get_smiles_opsin
-from app.modules import predict_IUPAC
+from app.modules.stout_wrapper import predict_IUPAC, predict_SMILES
 from app.modules.visualize_wrapper import get_svg_2d, get_html_3d
 from app.schemas.error import BadRequestModel
 from app.schemas.error import ErrorResponse
 from app.schemas.error import NotFoundModel
-from STOUT import translate_reverse
 
 router = APIRouter(
     prefix="/stout",
@@ -51,14 +49,15 @@ router = APIRouter(
     response_model=HealthCheck,
 )
 def get_health() -> HealthCheck:
-    """## Perform a Health Check.
+    """Perform a Health Check.
 
     Endpoint to perform a health check on. This endpoint can primarily be used by Docker
     to ensure a robust container orchestration and management are in place. Other
     services that rely on the proper functioning of the API service will not deploy if this
     endpoint returns any other HTTP status code except 200 (OK).
+
     Returns:
-            HealthCheck: Returns a JSON response with the health status
+        HealthCheck: Returns a JSON response with the health status
     """
     return HealthCheck(status="OK")
 
@@ -98,8 +97,9 @@ async def stout_molecules(
 ):
     all_iupac = []
     all_data = []
-    for item in io.StringIO(smiles_list):
-        smiles = item.strip()
+    chemical_formulas_list = smiles_list.split("\n")
+    for item in chemical_formulas_list[:50]:
+        smiles = item
         mol = Chem.MolFromSmiles(smiles)
         if mol:
             predicted_IUPAC = predict_IUPAC(smiles)
@@ -176,7 +176,7 @@ async def iupac_name_to_smiles(
         if converter == "opsin":
             smiles = get_smiles_opsin(input_text)
         else:
-            smiles = translate_reverse(input_text)
+            smiles = predict_SMILES(input_text)
         if smiles:
             if visualize == "2D":
                 depiction = get_svg_2d(smiles)
