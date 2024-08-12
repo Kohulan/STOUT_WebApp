@@ -76,7 +76,7 @@ def show_convert_iupac():
             if result:
                 st.subheader("Generated SMILES")
                 st.write(f"<b>Input name:</b> {iupac_name}", unsafe_allow_html=True)
-                st.write(
+                st.markdown(
                     f"<b>Output SMILES:</b> {result['SMILES']}", unsafe_allow_html=True
                 )
 
