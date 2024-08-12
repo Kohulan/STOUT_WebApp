@@ -17,16 +17,18 @@ model_path = str(default_path) + "/translator_forward/"
 
 # Downloads the model and unzips the file downloaded, if the model is not present on the working directory.
 def download_trained_weights(model_url: str, model_path: str, verbose=1):
-    """This function downloads the trained models and tokenizers to a default location.
-    After downloading the zipped file the function unzips the file automatically.
-    If the model exists on the default location this function will not work.
+    """
+    Download the trained models and tokenizers to a default location and unzip the file.
+
+    If the model exists at the default location, this function does nothing.
 
     Args:
-        model_url (str): trained model url for downloading.
-        model_path (str): model default path to download.
+        model_url (str): URL to download the trained model from.
+        model_path (str): Path to save the downloaded model.
+        verbose (int, optional): Verbosity level. Defaults to 1.
 
     Returns:
-        downloaded model.
+        None
     """
     # Download trained models
     if verbose > 0:
@@ -161,6 +163,7 @@ def detokenize_output_forward(predicted_array: tf.Tensor) -> str:
     outputs = [targ_lang_forward.index_word[i] for i in predicted_array[0].numpy()]
     prediction = (
         "".join([str(elem) for elem in outputs])
+        .replace("§", " ")
         .replace("<start>", "")
         .replace("<end>", "")
     )
@@ -185,7 +188,7 @@ def detokenize_output_backward(predicted_array: tf.Tensor) -> str:
     return prediction
 
 
-def split_character(SMILES: str) -> str:
+def split_smiles(SMILES: str) -> str:
     """Takes user input, splits it into characters, and generates tokens.
 
     Args:
@@ -205,8 +208,24 @@ def split_character(SMILES: str) -> str:
         return tokenized_SMILES
 
 
+def split_iupac(IUPACName: str) -> str:
+    """
+    Split an IUPAC name into individual characters and tokenize them.
+
+    Args:
+        IUPACName (str): Input IUPAC name.
+
+    Returns:
+        str: Tokenized IUPAC name.
+    """
+    splitted_list = list(IUPACName.replace(" ", "§"))
+    tokenized_IUPACname = " ".join(map(str, splitted_list))
+    return tokenized_IUPACname
+
+
 def predict_IUPAC(smiles: str) -> str:
-    """Predicts the IUPAC name given a SMILES string.
+    """
+    Predict the IUPAC name given a SMILES string.
 
     Args:
         smiles (str): Input SMILES string.
@@ -214,24 +233,26 @@ def predict_IUPAC(smiles: str) -> str:
     Returns:
         str: Predicted IUPAC name.
     """
-    x_can = split_character(smiles)
+    x_can = split_smiles(smiles)
     decoded = tokenize_input(x_can, inp_lang_forward, inp_max_length_forward)
-    result = reloaded_forward(tf.constant(decoded))
+    result, confidence_score = reloaded_forward(tf.constant(decoded))
     prediction = detokenize_output_forward(result)
     return prediction
 
 
-def predict_SMILES(smiles: str) -> str:
-    """Predicts the IUPAC name given a SMILES string.
+def predict_SMILES(iupacname: str) -> str:
+    """
+    Predict the SMILES string given an IUPAC name.
 
     Args:
-        smiles (str): Input IUPAC name.
+        iupacname (str): Input IUPAC name.
 
     Returns:
         str: Predicted SMILES string.
     """
-    x_can = split_character(smiles)
-    decoded = tokenize_input(x_can)
-    result = reloaded_backward(tf.constant(decoded))
+    x_can = split_iupac(iupacname)
+    decoded = tokenize_input(x_can, inp_lang_backward, inp_max_length_backward)
+    result, confidence = reloaded_backward(decoded)
     prediction = detokenize_output_backward(result)
-    return prediction
+    split_prediction = prediction.split(".")
+    return split_prediction[0] if len(split_prediction) > 5 else prediction
