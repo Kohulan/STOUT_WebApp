@@ -4,14 +4,12 @@ import pubchempy as pcp
 import requests
 import os
 from streamlit_navigation_bar import st_navbar
-from streamlit_extras.bottom_container import bottom
 from smiles_to_iupac_module import show_generate_iupac
 from iupac_to_smiles_module import show_convert_iupac
 from structure_to_iupac_module import show_draw_structure
 from about import show_about
 
 API_URL = "http://backend:3000"
-HEADERS = {"Content-Type": "text/plain", "accept": "application/json"}
 
 
 def show_footer():
@@ -163,19 +161,41 @@ def show_home(API_URL: str = API_URL) -> None:
         unsafe_allow_html=True,
     )
 
-    with bottom():
-        st.markdown(
-            "<p style='text-align: center;'>The first open-source SMILES to IUPAC name Translator, <b>STOUT</b>: Bridging the Gap Between Molecules and Names!</p>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            """
-            <footer style='text-align: center; margin-top: 10px; padding: 10px; background-color: #f2f2f2;'>
-                <p>&copy; 2024 <strong>stout.decimer.ai</strong> is created and maintained by the <a href="https://cheminf.uni-jena.de" target="_blank">Steinbeck Group</a></p>
-            </footer>
-            """,
-            unsafe_allow_html=True,
-        )
+    st.markdown(
+        "<p style='text-align: center;'>The first open-source SMILES to IUPAC name Translator, <b>STOUT</b>: Bridging the Gap Between Molecules and Names!</p>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+<style>
+.warning-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.stWarning {
+    background-color: #FFF9C4;
+    border-left: 6px solid #FBC02D;
+    color: #212121;
+    padding: 16px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+    max-width: 80%;
+    width: fit-content;
+}
+</style>
+<div class="warning-container">
+    <div class="stWarning">
+        ⚠️ Disclaimer: STOUT is a language model it can make mistakes
+    </div>
+</div>
+""",
+        unsafe_allow_html=True,
+    )
 
 
 def show_health_check():
@@ -282,7 +302,7 @@ def main():
     }
 
     options = {
-        "show_menu": True,
+        "show_menu": False,
         "show_sidebar": False,
     }
 

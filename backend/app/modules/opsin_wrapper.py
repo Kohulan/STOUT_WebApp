@@ -16,6 +16,7 @@ from app.modules.visualize_wrapper import get_svg_2d
 def setup_jvm():
     try:
         jvmPath = getDefaultJVMPath()
+        print(jvmPath)
     except JVMNotFoundException:
         print("If you see this message, for some reason JPype cannot find jvm.dll.")
         print(

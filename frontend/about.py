@@ -150,3 +150,7 @@ def show_about():
             """,
             unsafe_allow_html=True,
         )
+        st.markdown(
+            "<p style='text-align: center;'>We greatly acknowledge OpenEye for granting us an academic license to their Lexichem software, without which this work would not have been possible. </p>",
+            unsafe_allow_html=True,
+        )
