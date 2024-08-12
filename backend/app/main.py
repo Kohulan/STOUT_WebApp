@@ -13,7 +13,7 @@ from fastapi_versioning import VersionedFastAPI
 from .routers import stout
 from app.exception_handlers import input_exception_handler
 from app.exception_handlers import InvalidInputException
-from app.schemas import HealthCheck
+from app.schemas.healthcheck import HealthCheck
 
 app = FastAPI(
     title="STOUT API Microservice",
