@@ -219,7 +219,9 @@ def show_health_check():
     Raises:
         - HTTPException: If the API request fails or returns a non-200 status code.
     """
-    st.subheader("Health Check")
+    st.subheader(
+        "If the API is experiencing issues, please check the API Health status here.."
+    )
 
     if st.button("Check Health"):
         api_endpoint = f"{API_URL}/latest/stout/health"
@@ -264,7 +266,7 @@ def main():
     )
 
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    logo_path = os.path.join(parent_dir, "/public/STOUT.svg")
+    logo_path = os.path.join(parent_dir, "public/STOUT.svg")
 
     pages = [
         "Home",
