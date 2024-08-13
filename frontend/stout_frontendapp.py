@@ -153,6 +153,11 @@ def show_home(API_URL: str = API_URL) -> None:
         )
 
     st.markdown(
+        "<p style='text-align: center;'>To draw a structure, please visit the <b>Structure to IUPAC tab</b>.</p>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
         """
         <div style='display: flex; justify-content: center; align-items: center;'>
             <img src='https://github.com/Kohulan/cheminf-jena-logos/blob/main/STOUT/stout.gif?raw=true' style='max-width: 10%; height: auto;' loop="false">
@@ -190,7 +195,7 @@ def show_home(API_URL: str = API_URL) -> None:
 </style>
 <div class="warning-container">
     <div class="stWarning">
-        ⚠️ Disclaimer: STOUT is a language model it can make mistakes
+        ⚠️ Disclaimer: STOUT is a language model that can make mistakes
     </div>
 </div>
 """,
