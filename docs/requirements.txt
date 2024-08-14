@@ -19,3 +19,8 @@ streamlit_extras
 streamlit-toggle-switch
 streamlit_ketcher
 pubchempy
+sphinx-autodoc-typehints
+sphinx_material
+sphinx_rtd_theme
+furo
+nbsphinx
