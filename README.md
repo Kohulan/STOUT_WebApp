@@ -42,9 +42,6 @@ This repository contains the code running on [stout.decimer.ai](https://stout.de
 🧪 STOUT-V2 is a powerful tool that can:
 - Translate SMILES to IUPAC names
 - Convert IUPAC names back to valid SMILES strings
-
-🔬 STOUT is actively developed and maintained by [Kohulan Rajan](https://kohulanr.com) at the [Steinbeck group](https://cheminf.uni-jena.de/) at the [Friedrich Schiller University Jena](https://www.uni-jena.de/).
-
 <hr>
 
 ## License :scroll:
@@ -68,7 +65,7 @@ Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [C
 ## Maintenance :wrench:
 
 <p align="center">
-  STOUT and <a href="https://decimer.ai">DECIMER</a> are developed and maintained by the <a href="https://cheminf.uni-jena.de">Steinbeck group</a> at the <a href="https://www.uni-jena.de/en/">Friedrich Schiller University</a> Jena, Germany.
+🔬 STOUT and <a href="https://decimer.ai">DECIMER</a> are developed and maintained by <a href="https://kohulanr.com">Kohulan Rajan</a> at the <a href="https://cheminf.uni-jena.de">Steinbeck group</a>, <a href="https://www.uni-jena.de/en/">Friedrich Schiller University</a> Jena, Germany.
 </p>
 
 <p align="center">
