@@ -61,7 +61,7 @@ Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [C
 </blockquote>
 
 ### Paper (Preprint)
-- Coming soon!
+<blockquote>1. Rajan K, Zielesny A, Steinbeck C. STOUT V2.0: SMILES to IUPAC name conversion using transformer models. ChemRxiv. 2024; doi:10.26434/chemrxiv-2024-089vs  This content is a preprint and has not been peer-reviewed.</blockquote>
 
 <hr>
 
