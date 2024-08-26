@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Kohulan/STOUT_WebApp/compare/v1.0.0...v1.0.1) (2024-08-26)
+
+
+### Documentation
+
+* Update README.md ([99446bb](https://github.com/Kohulan/STOUT_WebApp/commit/99446bb05281009af80af683a985e97c6c78fefb))
+
 ## 1.0.0 (2024-08-14)
 
 
