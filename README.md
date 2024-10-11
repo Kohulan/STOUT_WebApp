@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://stout.decimer.ai/" target="_blank">
-    <img src="/frontend/public/STOUT.png" width="600" alt="STOUT Logo">
+    <img src="/frontend/src/assets/STOUT.png" width="600" alt="STOUT Logo">
   </a>
 </h1>
 
@@ -18,8 +18,7 @@
   <a href="https://github.com/Kohulan/STOUT_WebApp/actions/workflows/release-please.yml"><img src="https://github.com/Kohulan/STOUT_WebApp/actions/workflows/release-please.yml/badge.svg" alt="Workflow"></a>
   <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/Framework-FastAPI-blue?style" alt="framework"></a>
   <a href="https://stout.api.decimer.ai/latest/docs"><img src="https://img.shields.io/badge/docs-fastapi-blue" alt="FastAPI Documentation"></a>
-  <a href="https://stout-web-application.readthedocs.io/en/latest/?badge=latest"><img src="https://readthedocs.org/projects/stout-web-application/badge/?version=latest" alt="Documentation Status"></a>
-</p>
+  <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/Framework-Vue.js-green?style=flat-square" alt="Vue.js Framework"></a>
 
 <p align="center">
   <a href="#about">About</a> •
