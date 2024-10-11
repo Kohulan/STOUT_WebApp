@@ -11,7 +11,7 @@ import numpy as np
 default_path = pystow.join("STOUT-V2", "models")
 
 # model download location
-model_url = "https://zenodo.org/records/12542360/files/models.zip?download=1"
+model_url = "https://zenodo.org/records/13318286/files/models.zip?download=1"
 model_path = str(default_path) + "/translator_forward/"
 
 

@@ -13,3 +13,8 @@ tensorflow==2.15.0
 unicodedata2==15.0.0
 websockets==10.4
 jinja2
+efficientnet
+pillow_heif
+pillow
+opencv-python==4.8.1.78
+rdkit

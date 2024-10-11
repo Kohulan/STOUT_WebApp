@@ -91,8 +91,8 @@ async def stout_molecules(
         title="Retranslate(OPSIN)",
         description="Retranslate the predicted IUPAC names using OPSIN",
     ),
-    format: Literal["json", "html"] = Query(
-        default=lambda: "html", description="Desired display format"
+    format: Literal["text", "json", "html"] = Query(
+        default="text", description="Desired display format"
     ),
 ):
     all_iupac = []

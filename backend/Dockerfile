@@ -12,7 +12,6 @@ RUN apt-get update && \
     conda update -n base -c defaults conda
 
 RUN conda install -c conda-forge python>=PYTHON_VERSION
-#RUN conda install -c conda-forge rdkit==RDKIT_VERSION
 
 RUN python3 -m pip install -U pip
 
@@ -27,7 +26,6 @@ RUN pip3 install --no-cache-dir -r /code/requirements.txt
 RUN pip3 install --no-deps STOUT-pypi>=2.0.5
 RUN python3 -m pip uninstall -y imantics
 RUN pip3 install imantics==0.1.12
-RUN pip3 install rdkit
 
 RUN python3 -m pip install uvicorn[standard]
 

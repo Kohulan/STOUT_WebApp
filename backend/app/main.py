@@ -8,9 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi_versioning import VersionedFastAPI
 
-# from prometheus_fastapi_instrumentator import Instrumentator
-
 from .routers import stout
+from .routers import decimer
 from app.exception_handlers import input_exception_handler
 from app.exception_handlers import InvalidInputException
 from app.schemas.healthcheck import HealthCheck
@@ -18,7 +17,7 @@ from app.schemas.healthcheck import HealthCheck
 app = FastAPI(
     title="STOUT API Microservice",
     description="STOUT (SMILES-TO-IUPAC-name translator), a deep-learning neural machine translation approach to generate the IUPAC name for a given molecule from its SMILES string.",
-    # terms_of_service="https://docs.api.naturalproducts.net",
+    terms_of_service="https://decimer.ai",
     contact={
         "name": "Kohulan Rajan",
         "url": "https://cheminf.uni-jena.de/",
@@ -31,14 +30,14 @@ app = FastAPI(
 )
 
 app.include_router(stout.router)
-
+app.include_router(decimer.router)
 
 app = VersionedFastAPI(
     app,
     version_format="{major}",
     prefix_format="/v{major}",
     enable_latest=True,
-    # terms_of_service="https://docs.api.naturalproducts.net",
+    terms_of_service="https://decimer.ai",
     contact={
         "name": "Kohulan Rajan",
         "url": "https://cheminf.uni-jena.de/",
