@@ -1,11 +1,12 @@
-FROM python:3.11
-
-COPY requirements.txt app/requirements.txt
+FROM node:16 AS build-stage
 WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
-RUN pip install -r requirements.txt
-COPY . /app
-
-EXPOSE 8501
-
-ENTRYPOINT ["streamlit", "run", "stout_frontendapp.py", "--server.address=0.0.0.0","--server.port=8501"]
+FROM nginx:stable-alpine AS production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
