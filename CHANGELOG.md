@@ -1,5 +1,33 @@
 # Changelog
 
+## [2.0.0](https://github.com/Kohulan/STOUT_WebApp/compare/v1.0.0...v2.0.0) (2024-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* Frontend has been completely re-written using Vue.js. Existing frontend code and architecture are no longer supported.
+
+### Features
+
+* update to javascript ([a6eee94](https://github.com/Kohulan/STOUT_WebApp/commit/a6eee94182a1f2cdd49b37abcf53a8ad342df6df))
+
+
+### Bug Fixes
+
+* improved website and bug fixes ([c98859d](https://github.com/Kohulan/STOUT_WebApp/commit/c98859dacd80a8944c737bfe9819ccdf052465e2))
+* remove tflite model ([b86e16e](https://github.com/Kohulan/STOUT_WebApp/commit/b86e16ec7a66dd520a49a90a260d064035a403e1))
+* update README.md ([f4aa4b0](https://github.com/Kohulan/STOUT_WebApp/commit/f4aa4b092e5d07e0348177a57fad7a5a5202cfd9))
+
+
+### Documentation
+
+* Update README.md ([99446bb](https://github.com/Kohulan/STOUT_WebApp/commit/99446bb05281009af80af683a985e97c6c78fefb))
+
+
+### Code Refactoring
+
+* restructure project ([4c67424](https://github.com/Kohulan/STOUT_WebApp/commit/4c67424c30c1f9a6bab0bfc47336e8f00d3d89e3))
+
 ## 1.0.0 (2024-08-14)
 
 
