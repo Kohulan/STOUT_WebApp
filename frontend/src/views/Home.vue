@@ -1,72 +1,67 @@
 <template>
   <div class="home">
-    <header class="header">
-      <img src="@/assets/STOUT.png" alt="STOUT Logo" class="logo" />
-    </header>
-    <h1 class="title">Smiles TO iUpac Translator</h1>
+    <div class="main-content">
+      <header class="header">
+        <img src="@/assets/STOUT.png" alt="STOUT Logo" class="logo">
+      </header>
+      <h1 class="title">Smiles TO iUpac Translator</h1>
 
-    <main class="main-content">
-      <div class="input-section">
-        <label for="smiles-input" class="sr-only">Enter Molecule SMILES</label>
-        <input id="smiles-input" v-model.lazy="smiles" placeholder="Enter Molecule SMILES" class="input-field"
-          :disabled="iupacLoading || pubchemLoading" />
-        <div class="button-group">
-          <button class="btn btn-primary" :disabled="iupacLoading || pubchemLoading || !smiles.trim()"
-            @click="getIupacName">
-            <span v-if="!iupacLoading">Get IUPAC name</span>
-            <span v-else class="loading-spinner" aria-hidden="true" />
-          </button>
-          <button class="btn btn-secondary" :disabled="pubchemLoading || iupacLoading || !smiles.trim()"
-            @click="searchPubChemName">
-            <span v-if="!pubchemLoading">Search PubChem</span>
-            <span v-else class="loading-spinner" aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-
-      <transition name="fade">
-        <div v-if="iupacName || pubchemIupac" class="result-section">
-          <h2 class="result-title">Results:</h2>
-          <div v-if="iupacName" class="result-card">
-            <h3>STOUT IUPAC</h3>
-            <p>{{ iupacName }}</p>
-          </div>
-          <div v-if="pubchemIupac" class="result-card">
-            <h3>PubChem IUPAC</h3>
-            <component :is="renderSafeHtml(pubchemIupac)" />
+      <div class="content-wrapper">
+        <div class="input-section">
+          <label for="smiles-input" class="sr-only">Enter Molecule SMILES</label>
+          <input v-model.lazy="smiles" id="smiles-input" placeholder="Enter Molecule SMILES" class="input-field"
+            :disabled="iupacLoading || pubchemLoading" />
+          <div class="button-group">
+            <button @click="getIupacName" class="btn btn-primary"
+              :disabled="iupacLoading || pubchemLoading || !smiles.trim()">
+              <span v-if="!iupacLoading">Get IUPAC name</span>
+              <span v-else class="loading-spinner" aria-hidden="true"></span>
+            </button>
+            <button @click="searchPubChemName" class="btn btn-secondary"
+              :disabled="pubchemLoading || iupacLoading || !smiles.trim()">
+              <span v-if="!pubchemLoading">Search PubChem</span>
+              <span v-else class="loading-spinner" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
-      </transition>
 
-      <div class="info-section">
-        <p class="info-text">
-          To draw a structure, please visit the
-          <router-link to="/structure-to-iupac" class="link">
-            Structure to IUPAC tab </router-link>.
-        </p>
-        <img :src="stoutGif" alt="STOUT Animation" class="stout-gif" />
-        <p class="info-text">
-          The first open-source SMILES to IUPAC name Translator,
-          <strong>STOUT</strong>: Bridging the Gap Between Molecules and Names!
-        </p>
-      </div>
+        <transition name="fade">
+          <div class="result-section" v-if="iupacName || pubchemIupac">
+            <h2 class="result-title">Results:</h2>
+            <div class="result-card" v-if="iupacName">
+              <h3>STOUT IUPAC</h3>
+              <p>{{ iupacName }}</p>
+            </div>
+            <div class="result-card" v-if="pubchemIupac">
+              <h3>PubChem IUPAC</h3>
+              <p v-html="pubchemIupac"></p>
+            </div>
+          </div>
+        </transition>
 
-      <div class="warning-container">
-        <div class="warning" role="alert">
-          <span aria-hidden="true">⚠️</span> Disclaimer: STOUT is a language
-          model that can make mistakes
+        <div class="info-section">
+          <p class="info-text">To draw a structure, please visit the <router-link to="/structure-to-iupac"
+              class="link">Structure to IUPAC tab</router-link>.</p>
+          <img :src="stoutGif" alt="STOUT Animation" class="stout-gif">
+          <p class="info-text">The first open-source SMILES to IUPAC name Translator, <strong>STOUT</strong>: Bridging
+            the Gap Between Molecules and Names!</p>
+        </div>
+
+        <div class="warning-container">
+          <div class="warning" role="alert">
+            <span aria-hidden="true">⚠️</span> Disclaimer: STOUT is a language model that can make mistakes
+          </div>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, h } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { smilesToIupac, searchPubChem } from '@/services/api'
 import stoutGif from '@/assets/stout.gif'
-import DOMPurify from 'dompurify'
 
 export default {
   name: 'HomePage',
@@ -75,17 +70,17 @@ export default {
 
     const smiles = computed({
       get: () => store.state.stout.smiles,
-      set: (value) => store.commit('setStoutSmiles', value),
+      set: (value) => store.commit('setStoutSmiles', value)
     })
     const iupacName = computed(() => store.state.stout.iupacName)
     const pubchemIupac = computed(() => store.state.stout.pubchemIupac)
     const iupacLoading = computed({
       get: () => store.state.stout.iupacLoading,
-      set: (value) => store.commit('setStoutIupacLoading', value),
+      set: (value) => store.commit('setStoutIupacLoading', value)
     })
     const pubchemLoading = computed({
       get: () => store.state.stout.pubchemLoading,
-      set: (value) => store.commit('setStoutPubchemLoading', value),
+      set: (value) => store.commit('setStoutPubchemLoading', value)
     })
 
     const getIupacName = async () => {
@@ -95,10 +90,7 @@ export default {
         const result = await smilesToIupac(smiles.value)
         const parser = new DOMParser()
         const htmlDoc = parser.parseFromString(result, 'text/html')
-        store.commit(
-          'setStoutIupacName',
-          htmlDoc.querySelector('td:last-child').textContent.trim()
-        )
+        store.commit('setStoutIupacName', htmlDoc.querySelector('td:last-child').textContent.trim())
       } catch (error) {
         console.error('Error generating IUPAC name:', error)
         store.commit('setStoutIupacName', 'Error generating IUPAC name')
@@ -125,24 +117,6 @@ export default {
       }
     }
 
-    const renderSafeHtml = (html) => {
-      const sanitizedHtml = DOMPurify.sanitize(html)
-      const div = document.createElement('div')
-      div.innerHTML = sanitizedHtml
-      return Array.from(div.childNodes).map((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          return h(node.tagName.toLowerCase(), {
-            innerHTML: node.innerHTML,
-            ...Array.from(node.attributes).reduce((attrs, attr) => {
-              attrs[attr.name] = attr.value
-              return attrs
-            }, {}),
-          })
-        }
-        return node.textContent
-      })
-    }
-
     return {
       smiles,
       iupacName,
@@ -151,22 +125,35 @@ export default {
       pubchemLoading,
       stoutGif,
       getIupacName,
-      searchPubChemName,
-      renderSafeHtml,
+      searchPubChemName
     }
-  },
+  }
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Bahnschrift:wght@300;400;700&display=swap');
+
 .home {
   width: 100%;
-  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: 'Bahnschrift', 'Arial', sans-serif;
   color: #0a2472;
-  box-sizing: border-box;
   background-color: #f0f7ff;
-  min-height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 16px rgba(10, 36, 114, 0.1);
 }
 
 .header {
@@ -189,23 +176,16 @@ export default {
 
 .title {
   font-size: 2.5rem;
-  font-weight: bold;
   color: #0a2472;
   margin: 0 0 2rem;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(10, 36, 114, 0.1);
 }
 
-.main-content {
+.content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 8px 16px rgba(10, 36, 114, 0.1);
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .input-section {
@@ -407,20 +387,20 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .home {
+    padding: 20px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
   .button-group {
     flex-direction: column;
   }
 
   .btn {
     width: 100%;
-  }
-
-  .home {
-    padding: 1rem;
-  }
-
-  .main-content {
-    padding: 1.5rem;
   }
 
   .title {

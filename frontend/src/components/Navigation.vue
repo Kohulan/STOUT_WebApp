@@ -2,10 +2,10 @@
   <nav class="nav-container">
     <div class="nav-content">
       <div class="nav-left">
-        <button class="hamburger-menu" @click="toggleMenu">
-          <span />
-          <span />
-          <span />
+        <button @click="toggleMenu" class="hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
         <router-link to="/" class="logo-link">
           <img src="@/assets/STOUT.svg" alt="STOUT Logo" class="logo" />
@@ -40,31 +40,31 @@ export default {
         'IUPAC to SMILES',
         'DECIMER It!',
         'Health Check',
-        'About',
+        'About'
       ],
-      isMenuOpen: false,
+      isMenuOpen: false
     }
   },
   methods: {
     getRouteForPage(page) {
       const routeMap = {
-        Home: '/',
+        'Home': '/',
         'SMILES to IUPAC': '/smiles-to-iupac',
         'Structure to IUPAC': '/structure-to-iupac',
         'IUPAC to SMILES': '/iupac-to-smiles',
         'DECIMER It!': '/decimer-it',
         'Health Check': '/health-check',
-        About: '/about',
+        'About': '/about'
       }
       return routeMap[page] || '/'
     },
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen
+      this.isMenuOpen = !this.isMenuOpen;
     },
     closeMenu() {
-      this.isMenuOpen = false
-    },
-  },
+      this.isMenuOpen = false;
+    }
+  }
 }
 </script>
 
@@ -125,9 +125,7 @@ html {
   text-decoration: none;
   padding: 0 15px;
   font-size: 0.9rem;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
   height: 100%;
   display: flex;
   align-items: center;

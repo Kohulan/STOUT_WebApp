@@ -1,72 +1,72 @@
 <template>
   <div class="decimer-it">
-    <h2 class="title">
-      Generate IUPAC Name from Structure or Image
-    </h2>
-    <div class="content-wrapper">
-      <div class="upload-section">
-        <h3>Image Upload and Visualization</h3>
-        <input type="file" accept="image/*" class="file-input" @change="onFileUpload" />
-        <img v-if="processedImage" :src="processedImage" alt="Uploaded Image" class="processed-image" />
-      </div>
-      <div class="ketcher-section">
-        <h3>Molecular Structure Editor (Ketcher)</h3>
-        <div class="ketcher-container">
-          <iframe ref="ketcherFrame" src="./standalone/index.html" width="100%" height="500" />
+    <div class="main-content">
+      <h2 class="title">DECIMER It! - Generate IUPAC Name from Structure or Image</h2>
+      <div class="content-wrapper">
+        <div class="ketcher-section">
+          <h3>Molecular Structure Editor (Ketcher)</h3>
+          <div class="ketcher-container">
+            <iframe ref="ketcherFrame" src="./standalone/index.html" width="100%" height="600"></iframe>
+          </div>
+          <div v-if="smiles" class="smiles-output">
+            <h4>SMILES Output:</h4>
+            <pre>{{ smiles }}</pre>
+          </div>
         </div>
-        <div v-if="smiles" class="smiles-output">
-          <h4>SMILES Output:</h4>
-          <pre>{{ smiles }}</pre>
+        <div class="upload-section">
+          <h3>Image Upload and Visualization</h3>
+          <input type="file" @change="onFileUpload" accept="image/*" class="file-input">
+          <img v-if="processedImage" :src="processedImage" alt="Uploaded Image" class="processed-image">
         </div>
       </div>
       <div class="control-section">
         <div class="options">
           <label class="checkbox-container">
-            <input v-model="retranslate" type="checkbox" />
-            <span class="checkmark" />
+            <input type="checkbox" v-model="retranslate">
+            <span class="checkmark"></span>
             Retranslate (OPSIN)
           </label>
           <div class="radio-group">
             <label>Output Format:</label>
             <div class="radio-options">
-              <label v-for="format in ['HTML', 'JSON', 'TEXT']" :key="format" class="radio-container">
-                <input v-model="outputFormat" type="radio" :value="format" />
-                <span class="radio-checkmark" />
+              <label class="radio-container" v-for="format in ['HTML', 'JSON', 'TEXT']" :key="format">
+                <input type="radio" v-model="outputFormat" :value="format">
+                <span class="radio-checkmark"></span>
                 {{ format }}
               </label>
             </div>
           </div>
         </div>
-        <button class="generate-button" :disabled="isLoading" @click="generateIupacName">
+        <button @click="generateIupacName" class="generate-button" :disabled="isLoading">
           {{ isLoading ? 'Generating...' : 'Generate IUPAC Name' }}
         </button>
       </div>
+      <transition name="fade">
+        <div v-if="isLoading" class="loading-overlay">
+          <div class="loader"></div>
+        </div>
+        <div v-else-if="iupacResult" class="result">
+          <h3>IUPAC Name Generation Result:</h3>
+          <div v-if="outputFormat === 'HTML'" v-html="sanitizedHtml" class="html-result"></div>
+          <div v-else class="text-result-container">
+            <pre class="text-result">{{ iupacResult }}</pre>
+            <button v-if="outputFormat === 'JSON'" @click="copyToClipboard" class="copy-button">
+              {{ copySuccess ? 'Copied!' : 'Copy JSON' }}
+            </button>
+          </div>
+        </div>
+      </transition>
     </div>
-    <transition name="fade">
-      <div v-if="isLoading" class="loading-overlay">
-        <div class="loader" />
-      </div>
-      <div v-else-if="iupacResult" class="result">
-        <h3>IUPAC Name Generation Result:</h3>
-        <div v-if="outputFormat === 'HTML'" class="html-result">
-          <component :is="renderSafeHtml(sanitizedHtml)" />
-        </div>
-        <div v-else class="text-result-container">
-          <pre class="text-result">{{ iupacResult }}</pre>
-          <button v-if="outputFormat === 'JSON'" class="copy-button" @click="copyToClipboard">
-            {{ copySuccess ? 'Copied!' : 'Copy JSON' }}
-          </button>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
-import { ref, computed, onMounted, watch, h } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useStore } from 'vuex'
+import axios from 'axios'
 import DOMPurify from 'dompurify'
-import { structureToIupac, decimerit, searchPubChem } from '@/services/api'
+
+const API_URL = "https://stout.api.decimer.ai"
 
 export default {
   name: 'DecimerIt',
@@ -77,31 +77,27 @@ export default {
 
     const processedImage = computed({
       get: () => state.value.processedImage,
-      set: (value) =>
-        store.dispatch('updateDecimerState', { processedImage: value }),
+      set: (value) => store.dispatch('updateDecimerState', { processedImage: value })
     })
 
     const smiles = computed({
       get: () => state.value.smiles,
-      set: (value) => store.dispatch('updateDecimerState', { smiles: value }),
+      set: (value) => store.dispatch('updateDecimerState', { smiles: value })
     })
 
     const retranslate = computed({
       get: () => state.value.retranslate,
-      set: (value) =>
-        store.dispatch('updateDecimerState', { retranslate: value }),
+      set: (value) => store.dispatch('updateDecimerState', { retranslate: value })
     })
 
     const outputFormat = computed({
       get: () => state.value.outputFormat,
-      set: (value) =>
-        store.dispatch('updateDecimerState', { outputFormat: value }),
+      set: (value) => store.dispatch('updateDecimerState', { outputFormat: value })
     })
 
     const iupacResult = computed({
       get: () => state.value.iupacResult,
-      set: (value) =>
-        store.dispatch('updateDecimerState', { iupacResult: value }),
+      set: (value) => store.dispatch('updateDecimerState', { iupacResult: value })
     })
 
     const isLoading = ref(false)
@@ -150,8 +146,10 @@ export default {
         try {
           const formData = new FormData()
           formData.append('file', file)
-          const response = await decimerit(formData)
-          smiles.value = response.SMILES
+          const response = await axios.post(`${API_URL}/latest/decimer/image2SMILES`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+          })
+          smiles.value = response.data.SMILES
           processedImage.value = URL.createObjectURL(file)
           if (ketcher) {
             await ketcher.setMolecule(smiles.value)
@@ -176,24 +174,14 @@ export default {
       }
 
       try {
-        const response = await structureToIupac(
-          structure,
-          retranslate.value,
-          outputFormat.value
-        )
-        iupacResult.value =
-          outputFormat.value === 'HTML'
-            ? response.replace(/\\n/g, '')
-            : response
-
-        // Search PubChem for additional information
-        try {
-          const pubChemData = await searchPubChem(structure)
-          iupacResult.value += `\n\nPubChem IUPAC Name: ${pubChemData.iupacName}\nPubChem URL: ${pubChemData.url}`
-        } catch (pubChemError) {
-          console.error('Error searching PubChem:', pubChemError)
-          // Don't alert the user, just log the error
-        }
+        const response = await axios.post(`${API_URL}/latest/stout/SMILE2IUPAC`, structure, {
+          params: {
+            retranslate: retranslate.value.toString(),
+            format: outputFormat.value.toLowerCase()
+          },
+          headers: { 'Content-Type': 'text/plain', 'Accept': 'application/json' }
+        })
+        iupacResult.value = outputFormat.value === 'HTML' ? response.data.replace(/\\n/g, '') : response.data
       } catch (error) {
         console.error('Error generating IUPAC name:', error)
         alert('Error generating IUPAC name. Please try again.')
@@ -204,23 +192,18 @@ export default {
 
     const sanitizedHtml = computed(() => {
       if (iupacResult.value && outputFormat.value === 'HTML') {
-        const sanitized = DOMPurify.sanitize(iupacResult.value, {
-          ADD_TAGS: ['svg'],
-        })
+        const sanitized = DOMPurify.sanitize(iupacResult.value, { ADD_TAGS: ['svg'] })
         return processSVG(sanitized)
       }
       return ''
     })
 
     const processSVG = (html) => {
-      return html.replace(
-        /&lt;\?xml[\s\S]*?&lt;svg[\s\S]*?&lt;\/svg&gt;/g,
-        (match) => {
-          const decodedSVG = decodeHTMLEntities(match)
-          const svgContent = decodedSVG.replace(/<\?xml[^>]*\?>/, '').trim()
-          return `<div class="svg-container">${svgContent}</div>`
-        }
-      )
+      return html.replace(/&lt;\?xml[\s\S]*?&lt;svg[\s\S]*?&lt;\/svg&gt;/g, (match) => {
+        const decodedSVG = decodeHTMLEntities(match)
+        const svgContent = decodedSVG.replace(/<\?xml[^>]*\?>/, '').trim()
+        return `<div class="svg-container">${svgContent}</div>`
+      })
     }
 
     const decodeHTMLEntities = (text) => {
@@ -229,36 +212,16 @@ export default {
       return textarea.value
     }
 
-    const renderSafeHtml = (html) => {
-      const div = document.createElement('div')
-      div.innerHTML = DOMPurify.sanitize(html, { ADD_TAGS: ['svg'] })
-      return Array.from(div.childNodes).map((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          return h(node.tagName.toLowerCase(), {
-            innerHTML: node.innerHTML,
-            ...Array.from(node.attributes).reduce((attrs, attr) => {
-              attrs[attr.name] = attr.value
-              return attrs
-            }, {}),
-          })
-        }
-        return node.textContent
-      })
-    }
-
     const copyToClipboard = () => {
       if (outputFormat.value === 'JSON' && iupacResult.value) {
-        navigator.clipboard
-          .writeText(JSON.stringify(iupacResult.value))
-          .then(() => {
-            copySuccess.value = true
-            setTimeout(() => {
-              copySuccess.value = false
-            }, 2000)
-          })
-          .catch((err) => {
-            console.error('Failed to copy text: ', err)
-          })
+        navigator.clipboard.writeText(JSON.stringify(iupacResult.value)).then(() => {
+          copySuccess.value = true
+          setTimeout(() => {
+            copySuccess.value = false
+          }, 2000)
+        }).catch(err => {
+          console.error('Failed to copy text: ', err)
+        })
       }
     }
 
@@ -274,10 +237,9 @@ export default {
       sanitizedHtml,
       onFileUpload,
       generateIupacName,
-      copyToClipboard,
-      renderSafeHtml,
+      copyToClipboard
     }
-  },
+  }
 }
 </script>
 
@@ -287,45 +249,55 @@ export default {
 .decimer-it {
   font-family: 'Bahnschrift', sans-serif;
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #f0f7ff;
+  padding: 40px;
   box-sizing: border-box;
 }
 
-.title {
-  color: #0a2472;
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(10, 36, 114, 0.1);
-}
-
-.content-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 40px;
+.main-content {
+  width: 100%;
+  max-width: 1600px;
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 8px 16px rgba(10, 36, 114, 0.1);
   padding: 40px;
 }
 
-.upload-section,
-.ketcher-section,
-.control-section {
-  flex: 1 1 300px;
+.title {
+  color: #0a2472;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(10, 36, 114, 0.1);
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.ketcher-section {
+  flex: 2;
+}
+
+.upload-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .ketcher-container {
   width: 100%;
-  height: 500px;
+  height: 600px;
   border: 2px solid #0a2472;
   border-radius: 12px;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .file-input {
@@ -352,8 +324,16 @@ export default {
   word-break: break-all;
 }
 
+.control-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .options {
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .checkbox-container,
@@ -361,7 +341,6 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 15px;
   color: #0a2472;
   font-size: 1.1rem;
 }
@@ -406,7 +385,7 @@ export default {
 
 .checkmark:after,
 .radio-checkmark:after {
-  content: '';
+  content: "";
   display: none;
 }
 
@@ -416,7 +395,7 @@ export default {
 }
 
 .checkmark:after {
-  content: '✓';
+  content: "✓";
   color: white;
   font-size: 16px;
 }
@@ -428,18 +407,21 @@ export default {
   background-color: white;
 }
 
+.radio-group {
+  display: flex;
+  align-items: center;
+}
+
 .radio-group>label {
-  display: block;
-  margin-bottom: 15px;
+  margin-right: 15px;
   color: #0a2472;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .radio-options {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
 .generate-button {
@@ -601,6 +583,78 @@ export default {
 
   .ketcher-container {
     height: 400px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .ketcher-section,
+  .upload-section {
+    width: 100%;
+  }
+
+  .ketcher-container {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .decimer-it {
+    padding: 20px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .ketcher-container {
+    height: 400px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .radio-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .generate-button {
+    font-size: 1rem;
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .decimer-it {
+    padding: 10px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .ketcher-container {
+    height: 300px;
   }
 }
 </style>

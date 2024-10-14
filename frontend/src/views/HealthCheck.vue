@@ -1,28 +1,15 @@
 <template>
   <div class="health-check">
     <h2 class="title">API Health Check</h2>
-    <p class="description">
-      Monitor the API status in real-time. Click the button below to check the
-      current health status.
-    </p>
-    <button
-      :disabled="loading"
-      class="check-button"
-      aria-live="polite"
-      @click="checkHealth"
-    >
+    <p class="description">Monitor the API status in real-time. Click the button below to check the current health
+      status.</p>
+    <button @click="checkHealth" :disabled="loading" class="check-button" aria-live="polite">
       <span v-if="!loading">Check Health</span>
-      <span v-else class="loading-spinner" aria-hidden="true" />
+      <span v-else class="loading-spinner" aria-hidden="true"></span>
     </button>
     <transition name="fade">
-      <div
-        v-if="status"
-        class="status"
-        :class="statusClass"
-        role="status"
-        aria-live="polite"
-      >
-        <i class="status-icon" :class="iconClass" aria-hidden="true" />
+      <div v-if="status" class="status" :class="statusClass" role="status" aria-live="polite">
+        <i class="status-icon" :class="iconClass" aria-hidden="true"></i>
         Health Status: {{ status }}
       </div>
     </transition>
@@ -50,13 +37,13 @@ export default {
     const statusClass = computed(() => ({
       'status-healthy': status.value === 'Healthy',
       'status-unhealthy': status.value === 'Unhealthy',
-      'status-error': status.value === 'Error',
+      'status-error': status.value === 'Error'
     }))
 
     const iconClass = computed(() => ({
       'icon-check': status.value === 'Healthy',
       'icon-warning': status.value === 'Unhealthy',
-      'icon-error': status.value === 'Error',
+      'icon-error': status.value === 'Error'
     }))
 
     const checkHealth = async () => {
@@ -82,11 +69,12 @@ export default {
       lastChecked,
       statusClass,
       iconClass,
-      checkHealth,
+      checkHealth
     }
-  },
+  }
 }
 </script>
+
 
 <style scoped>
 .health-check {
@@ -105,13 +93,11 @@ export default {
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #0a2472;
+  color: #1e3a8a;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
   text-align: center;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 4px rgba(10, 36, 114, 0.1);
-  animation: fadeInDown 1s ease-out;
+  animation: fadeInDown 0.5s ease-out;
 }
 
 .description {
@@ -155,7 +141,7 @@ export default {
   display: inline-block;
   width: 24px;
   height: 24px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, .3);
   border-radius: 50%;
   border-top-color: #fff;
   animation: spin 1s ease-in-out infinite;
@@ -198,9 +184,11 @@ export default {
 .icon-check::before {
   content: '✓';
 }
+
 .icon-warning::before {
   content: '⚠';
 }
+
 .icon-error::before {
   content: '✗';
 }
@@ -214,10 +202,9 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition:
-    opacity 0.5s,
-    transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
@@ -235,6 +222,7 @@ export default {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -246,6 +234,7 @@ export default {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
