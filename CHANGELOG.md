@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/Kohulan/STOUT_WebApp/compare/v1.1.0...v1.1.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* docker build and local deployment instructions ([987f8fd](https://github.com/Kohulan/STOUT_WebApp/commit/987f8fdf479037ef8a1fd9342da0b702dbed9c5c))
+* update training info README.md ([de62682](https://github.com/Kohulan/STOUT_WebApp/commit/de62682ee49dccabce676830a177cde1b5d1daf8))
+
 ## [2.0.0](https://github.com/Kohulan/STOUT_WebApp/compare/v1.0.0...v2.0.0) (2024-10-14)
 
 
