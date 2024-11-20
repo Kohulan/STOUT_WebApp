@@ -120,6 +120,25 @@ docker-compose logs backend
 
 <hr>
 
+## Training Details 🧠
+
+STOUT V2 uses a transformer-based sequence-to-sequence model
+
+Training tutorial could be found here: [STOUT Training](https://github.com/Kohulan/IWOMI_Tutorials/tree/IWOMI_2024/STOUT_Training)
+
+### Hardware Requirements
+
+#### Minimum Requirements (Inference)
+- CPU: 4 cores
+- RAM: 8GB
+- Storage: 5GB
+
+#### Recommended Requirements (Training)
+- TPU v3-8 or equivalent
+- High-speed internet connection for dataset downloads
+
+<hr>
+
 ## License :scroll:
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Kohulan/STOUT_WebApp/blob/main/LICENSE) file for details
@@ -143,7 +162,7 @@ Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [C
 ## Maintenance :wrench:
 
 <p align="center">
-🔬 <a href="https://stout.decimer.ai">STOUT and</a> <a href="https://decimer.ai">DECIMER</a> are developed and maintained by <a href="https://kohulanr.com">Kohulan Rajan</a> at the <a href="https://cheminf.uni-jena.de">Steinbeck group</a>, <a href="https://www.uni-jena.de/en/">Friedrich Schiller University</a> Jena, Germany.
+🔬 <a href="https://stout.decimer.ai">STOUT </a> and <a href="https://decimer.ai">DECIMER</a> are developed and maintained by <a href="https://kohulanr.com">Kohulan Rajan</a> at the <a href="https://cheminf.uni-jena.de">Steinbeck group</a>, <a href="https://www.uni-jena.de/en/">Friedrich Schiller University</a> Jena, Germany.
 </p>
 
 <p align="center">
