@@ -22,6 +22,7 @@
 
 <p align="center">
   <a href="#about">About</a> •
+  <a href="#deployment">Deployment</a> •
   <a href="#license">License</a> •
   <a href="#citation">Citation</a> •
   <a href="#maintenance">Maintenance</a> •
@@ -39,8 +40,84 @@
 This repository contains the code running on [stout.decimer.ai](https://stout.decimer.ai)
 
 🧪 STOUT-V2 is a powerful tool that can:
+
 - Translate SMILES to IUPAC names
 - Convert IUPAC names back to valid SMILES strings
+
+<hr>
+
+## Deployment 🚀
+
+### Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- Git
+
+### Local Deployment Steps
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/Kohulan/STOUT_WebApp.git
+cd STOUT_WebApp
+```
+
+2. Build and start the containers
+
+```bash
+docker-compose up -d --build
+```
+
+### Accessing the Application
+
+Once the containers are running, you can access:
+
+- Frontend: http://localhost:80
+- Backend API: http://localhost:3000
+- API Documentation: http://localhost:3000/docs
+
+### Container Structure
+
+The application runs two main containers:
+
+- `frontend`: Vue.js application served by Nginx (Port 80)
+- `backend`: FastAPI application running with uvicorn (Port 3000)
+
+### Managing the Application
+
+To stop the containers:
+
+```bash
+docker-compose down
+```
+
+### Troubleshooting
+
+If you encounter any issues:
+
+1. Check container status:
+
+```bash
+docker-compose ps
+```
+
+2. View container logs:
+
+```bash
+# All containers
+docker-compose logs
+
+# Specific container
+docker-compose logs frontend
+docker-compose logs backend
+```
+
+3. Common issues:
+   - Port conflicts: Ensure ports 80 and 3000 are available
+   - Network issues: Check if the `stout-network` is created properly
+   - Build errors: Make sure all dependencies are properly listed in requirements.txt and package.json
+
 <hr>
 
 ## License :scroll:
@@ -52,11 +129,13 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## Citation :newspaper:
 
 ### Software:
+
 <blockquote>
 Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [Computer software]. https://doi.org/10.5281/zenodo.1234
 </blockquote>
 
 ### Paper (Preprint)
+
 <blockquote>1. Rajan K, Zielesny A, Steinbeck C. STOUT V2.0: SMILES to IUPAC name conversion using transformer models. ChemRxiv. 2024; doi:10.26434/chemrxiv-2024-089vs  This content is a preprint and has not been peer-reviewed.</blockquote>
 
 <hr>
@@ -64,7 +143,7 @@ Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [C
 ## Maintenance :wrench:
 
 <p align="center">
-🔬 STOUT and <a href="https://decimer.ai">DECIMER</a> are developed and maintained by <a href="https://kohulanr.com">Kohulan Rajan</a> at the <a href="https://cheminf.uni-jena.de">Steinbeck group</a>, <a href="https://www.uni-jena.de/en/">Friedrich Schiller University</a> Jena, Germany.
+🔬 <a href="https://stout.decimer.ai">STOUT and</a> <a href="https://decimer.ai">DECIMER</a> are developed and maintained by <a href="https://kohulanr.com">Kohulan Rajan</a> at the <a href="https://cheminf.uni-jena.de">Steinbeck group</a>, <a href="https://www.uni-jena.de/en/">Friedrich Schiller University</a> Jena, Germany.
 </p>
 
 <p align="center">
@@ -102,3 +181,4 @@ Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [C
 </p>
 <p align="center">
   Made with ❤️ by the <a href="https://cheminf.uni-jena.de">Steinbeck Group</a> 
+</p>

@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=production
+    restart: always
+    networks:
+      - stout-network
+    container_name: frontend
+    
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - CORS_ORIGINS=http://frontend
+    restart: always
+    networks:
+      - stout-network
+    container_name: backend
+
+networks:
+  stout-network:
+    name: stout-network
+    driver: bridge

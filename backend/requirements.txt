@@ -2,15 +2,15 @@ fastapi>=0.110.3
 fastapi-pagination==0.10.0
 fastapi-versioning>=0.10.0
 httpx>=0.24.1
-IPython
 jpype1==1.4.1
+IPython
 pandas
 pre-commit
 prometheus-fastapi-instrumentator
 pystow>=0.4.9
 python-multipart
 tensorflow==2.15.0
-unicodedata2==15.0.0
+unicodedata2
 websockets==10.4
 jinja2
 efficientnet
@@ -18,3 +18,5 @@ pillow_heif
 pillow
 opencv-python==4.8.1.78
 rdkit
+imantics==0.1.12
+uvicorn[standard]
