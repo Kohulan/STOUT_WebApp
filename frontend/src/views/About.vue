@@ -5,21 +5,7 @@
       <div class="content-wrapper">
         <section class="section developers">
           <h2>Our Team</h2>
-          <div class="team-grid">
-            <div class="team-member" v-for="(member, index) in team" :key="index">
-              <img :src="member.image" :alt="member.name" class="avatar">
-              <h3>{{ member.name }}</h3>
-              <p class="role">{{ member.role }}</p>
-              <a :href="member.link" target="_blank" rel="noopener noreferrer" class="link">{{ member.linkText }}</a>
-            </div>
-          </div>
-          <div>
-            <h1> </h1>
-            <h1> </h1>
-          </div>
-
           <p class="team-description">
-
             🔬 STOUT was developed by <a href="https://www.linkedin.com/in/kohulanrajan/" target="_blank"
               rel="noopener noreferrer" class="link">Dr. Kohulan Rajan</a> under the supervision of
             <a href="https://www.w-hs.de/service/informationen-zur-person/person/zielesny/" target="_blank"
@@ -27,6 +13,14 @@
             <a href="https://www.linkedin.com/in/steinbeck/" target="_blank" rel="noopener noreferrer"
               class="link">Prof. Christoph Steinbeck</a>.
           </p>
+          <div class="team-grid">
+            <div class="team-member" v-for="(member, index) in team" :key="index">
+              <img :src="member.image" :alt="member.name" class="avatar">
+              <h3>{{ member.name }}</h3>
+              <p class="role">{{ member.role }}</p>
+              <a :href="member.link" target="_blank" rel="noopener noreferrer" class="link">{{ member.linkText }}</a>
+            </div>
+          </div>          
         </section>
 
         <section class="section citation">
@@ -35,6 +29,82 @@
             <p>{{ citation.title }}</p>
             <p>{{ citation.text }} <a :href="citation.link" target="_blank" rel="noopener noreferrer" class="link">{{
               citation.linkText }}</a></p>
+          </div>
+        </section>
+
+        <section class="section data-availability">
+          <h2>Data Availability</h2>
+          <div class="data-links">
+            <div class="data-item">
+              <h3>Project Resources</h3>
+              <ul>
+                <li>
+                  <strong>Project Git page:</strong>
+                  <a href="https://github.com/Kohulan/Smiles-TO-iUpac-Translator" target="_blank"
+                    rel="noopener noreferrer" class="link">
+                    https://github.com/Kohulan/Smiles-TO-iUpac-Translator
+                  </a>
+                </li>
+                <li>
+                  <strong>Web Application Git page:</strong>
+                  <a href="https://github.com/Kohulan/STOUT_WebApp" target="_blank" rel="noopener noreferrer"
+                    class="link">
+                    https://github.com/Kohulan/STOUT_WebApp
+                  </a>
+                </li>
+                <li>
+                  <strong>Models and checkpoints:</strong>
+                  <a href="https://zenodo.org/records/13318286" target="_blank" rel="noopener noreferrer" class="link">
+                    https://zenodo.org/records/13318286
+                  </a>
+                </li>
+                <li>
+                  <strong>Tutorial for Training:</strong>
+                  <a href="https://github.com/Kohulan/IWOMI_Tutorials/tree/IWOMI_2024/STOUT_Training" target="_blank"
+                    rel="noopener noreferrer" class="link">
+                    IWOMI Tutorials - STOUT Training
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="data-item">
+              <h3>Version & License</h3>
+              <ul>
+                <li><strong>Current version:</strong> <a href="https://github.com/Kohulan/Smiles-TO-iUpac-Translator/releases/tag/v2.1.2" target="_blank" rel="noopener noreferrer"
+                    class="link">v2.1.2</a>
+                </li>
+                <li><strong>License:</strong>
+                  <a href="https://opensource.org/license/mit" target="_blank" rel="noopener noreferrer"
+                    class="link">MIT</a>
+                </li>
+                <li><strong>Restrictions for non-academics:</strong> None</li>
+              </ul>
+            </div>
+            <div class="data-item">
+              <h3>Documentation</h3>
+              <ul>
+                <li>
+                  <strong>API:</strong>
+                  <a href="https://stout.api.decimer.ai/latest/docs" target="_blank" rel="noopener noreferrer"
+                    class="link">
+                    https://stout.api.decimer.ai/latest/docs
+                  </a>
+                </li>
+                <li>
+                  <strong>Python docs:</strong>
+                  <a href="https://stout-web-application.readthedocs.io/en/latest/index.html" target="_blank"
+                    rel="noopener noreferrer" class="link">
+                    https://stout-web-application.readthedocs.io
+                  </a>
+                </li>
+                <li>
+                  <strong>PyPI Package:</strong>
+                  <a href="https://pypi.org/project/STOUT-pypi/" target="_blank" rel="noopener noreferrer" class="link">
+                    https://pypi.org/project/STOUT-pypi/
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -91,7 +161,7 @@ export default {
       ],
       citations: [
         { title: 'For STOUT V1:', text: 'Rajan, K., Zielesny, A. & Steinbeck, C. STOUT: SMILES to IUPAC names using neural machine translation. J Cheminform 13, 34 (2021).', link: 'https://doi.org/10.1186/s13321-021-00512-4', linkText: 'https://doi.org/10.1186/s13321-021-00512-4' },
-        { title: 'For STOUT V2:', text: 'Rajan K, Zielesny A, Steinbeck C. STOUT V2.0: SMILES to IUPAC name conversion using transformer models. ChemRxiv. 2024;', link: 'https://doi.org/10.26434/chemrxiv-2024-089vs', linkText: 'doi:10.26434/chemrxiv-2024-089vs' }
+        { title: 'For STOUT V2:', text: 'Rajan, K., Zielesny, A. & Steinbeck, C. STOUT V2.0: SMILES to IUPAC name conversion using transformer models. J Cheminform 16, 146 (2024)', link: 'https://doi.org/10.1186/s13321-024-00941-x', linkText: 'https://doi.org/10.1186/s13321-024-00941-x' }
       ],
       authors: [
         { name: 'Prof. Dr. Christoph Steinbeck', email: 'christoph.steinbeck@uni-jena.de' },
@@ -477,6 +547,64 @@ li:hover {
 
   h3 {
     font-size: 1.3rem;
+  }
+}
+
+.data-availability {
+  margin-top: 40px;
+}
+
+.data-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.data-item {
+  background-color: #f0f7ff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(10, 36, 114, 0.05);
+  transition: all 0.3s ease;
+}
+
+.data-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(10, 36, 114, 0.1);
+}
+
+.data-item h3 {
+  color: #1e40af;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #bfdbfe;
+  padding-bottom: 8px;
+}
+
+.data-item ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.data-item li {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.data-item strong {
+  color: #1e40af;
+  display: block;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .data-links {
+    grid-template-columns: 1fr;
+  }
+
+  .data-item {
+    padding: 15px;
   }
 }
 </style>
