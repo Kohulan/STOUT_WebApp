@@ -12,6 +12,7 @@
           </keep-alive>
         </router-view>
         <AppFooter />
+        <IssueTracker />
       </div>
     </Transition>
   </div>
@@ -23,7 +24,8 @@ import { useStore } from 'vuex'
 import Navigation from '@/components/Navigation.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import SplashScreen from '@/components/SplashScreen.vue'
-import { checkHealth } from '@/services/api' // Import checkHealth from api.js
+import IssueTracker from '@/components/IssueTracker.vue'
+import { checkHealth } from '@/services/api'
 
 export default {
   name: 'App',
@@ -31,6 +33,7 @@ export default {
     Navigation,
     AppFooter,
     SplashScreen,
+    IssueTracker,
   },
   setup() {
     const store = useStore()
