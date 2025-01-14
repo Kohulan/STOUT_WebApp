@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/Kohulan/STOUT_WebApp/compare/v1.1.1...v1.2.0) (2025-01-14)
+
+
+### Features
+
+* data availability statement ([3f490d5](https://github.com/Kohulan/STOUT_WebApp/commit/3f490d5627c9f6b6985d21ff7cd9748fc6fad412))
+* github issue tracker ([d13432a](https://github.com/Kohulan/STOUT_WebApp/commit/d13432aa3602307913d26062d3300f0d70f0d65d))
+
+
+### Bug Fixes
+
+* update the paper citation ([19c9f21](https://github.com/Kohulan/STOUT_WebApp/commit/19c9f21cf3d8577ed91bb778ecd9fae1af31098f))
+
 ## [1.1.1](https://github.com/Kohulan/STOUT_WebApp/compare/v1.1.0...v1.1.1) (2024-11-20)
 
 
