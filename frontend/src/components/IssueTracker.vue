@@ -26,7 +26,7 @@
             <div class="bg-circle circle-1"></div>
             <div class="bg-circle circle-2"></div>
           </div>
-          
+
           <div class="modal-inner">
             <div class="modal-header">
               <div class="title-container">
@@ -46,14 +46,9 @@
                 <p class="primary-text">Found something that needs attention?</p>
                 <p class="secondary-text">Help us improve by creating a GitHub issue</p>
               </div>
-              
-              <a 
-                :href="githubIssueUrl" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="github-button"
-                @click="showPopup = false"
-              >
+
+              <a :href="githubIssueUrl" target="_blank" rel="noopener noreferrer" class="github-button"
+                @click="showPopup = false">
                 <div class="button-glow"></div>
                 <span class="github-icon mdi mdi-github"></span>
                 <span>Create GitHub Issue</span>
@@ -103,26 +98,62 @@ export default {
 <style scoped>
 /* Ultra modern animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 
 @keyframes particle {
-  0% { transform: translate(0, 0) scale(1); opacity: 0; }
-  50% { opacity: 0.5; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
 }
 
 @keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .floating {
@@ -432,11 +463,11 @@ export default {
   .modal-content {
     width: 95%;
   }
-  
+
   .modal-inner {
     padding: 24px;
   }
-  
+
   .github-issue-container {
     right: -62px;
     width: 140px;
@@ -446,11 +477,11 @@ export default {
   .button-content {
     font-size: 14px;
   }
-  
+
   .modal-header h2 {
     font-size: 1.5rem;
   }
-  
+
   .title-icon {
     width: 40px;
     height: 40px;
