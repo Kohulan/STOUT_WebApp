@@ -199,5 +199,5 @@ Rajan, K., Zielesny, A., & Steinbeck, C. (2024). STOUT_WebApp (Version 1.0.0) [C
   </a>
 </p>
 <p align="center">
-  Made with ❤️ by the <a href="https://cheminf.uni-jena.de">Steinbeck Group</a> 
+  Made with ☕ by the <a href="https://cheminf.uni-jena.de">Steinbeck Lab</a> 
 </p>
