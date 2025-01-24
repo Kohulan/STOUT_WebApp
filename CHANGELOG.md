@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/Kohulan/STOUT_WebApp/compare/v1.2.0...v1.2.1) (2025-01-24)
+
+
+### Bug Fixes
+
+* update group ([181c661](https://github.com/Kohulan/STOUT_WebApp/commit/181c6615f974eb0e0ba150d41396a9d029072703))
+
 ## [1.2.0](https://github.com/Kohulan/STOUT_WebApp/compare/v1.1.1...v1.2.0) (2025-01-14)
 
 
